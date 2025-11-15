@@ -94,6 +94,29 @@ p {
   margin-top: -1.7em;
 }
 
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cat-item {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  align-items: center;
+}
+
+.category img {
+  width: 110px;
+  height: 80px;
+}
+
+.category a {
+  text-decoration: none;
+  color: #303030;
+}
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
