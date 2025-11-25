@@ -1,4 +1,31 @@
 import { formatCurrency, getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+
+const services = new ExternalServices();
+
+function packageItems(items) {
+  const simpleItems = items.map((item) => {
+    return {
+        id: item.Id,
+        name: item.Name,
+        price: item.FinalPrice,
+        quantity: 1,
+    };
+
+    return simpleItems;
+  });        
+}
+
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
 
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
@@ -45,4 +72,25 @@ export default class CheckoutProcess {
 
   }
 
+  async checkout(form) {
+    const orderForm = document.getElementsByName("order-form");
+    const orders = formDataToJSON(orderForm);
+    const orderDate = new Date().toDateString();
+    orders.orderDate = orderDate;
+    orders.orderTotal = this.orderTotal;
+    orders.tax = this.tax;
+    orders.shipping = this.shipping;
+    orders.items = packageItems(this.list);
+
+    try {
+      const response = await services.checkout(orders);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  
+  
 }
+
