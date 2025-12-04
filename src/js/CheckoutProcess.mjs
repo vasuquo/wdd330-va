@@ -1,4 +1,4 @@
-import { formatCurrency, getLocalStorage } from "./utils.mjs";
+import { formatCurrency, getLocalStorage, setLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -10,10 +10,10 @@ function packageItems(items) {
         name: item.Name,
         price: item.FinalPrice,
         quantity: 1,
-    };
-
-    return simpleItems;
-  });        
+    };    
+  });      
+  
+  return simpleItems;
 }
 
 function formDataToJSON(formElement) {
@@ -46,7 +46,7 @@ export default class CheckoutProcess {
     calculateItemSubTotal() {
         this.itemTotal = this.list.reduce((accum, item) => accum + item.FinalPrice, 0);
         const subtotal = document.querySelector(`.${this.outputSelector.className} #subtotal`);
-        subtotal.innerText = `Subtotal:  $${this.itemTotal.toFixed(2)}`;        
+        subtotal.innerText = `Subtotal:  $${formatCurrency(this.itemTotal)}`;        
     }
 
     calculateOrderTotal() {
@@ -62,18 +62,18 @@ export default class CheckoutProcess {
   displayOrderTotals() {
     // once the totals are all calculated display them in the order summary page
     const tax = document.querySelector(`.${this.outputSelector.className} #tax`);
-    tax.innerText = `Tax:  $${this.tax.toFixed(2)}`;
+    tax.innerText = `Tax:  $${formatCurrency(this.tax)}`;
     
     const shipping = document.querySelector(`.${this.outputSelector.className} #shipping`);
-    shipping.innerText = `Shipping:  $${this.shipping.toFixed(2)}`;
+    shipping.innerText = `Shipping:  $${formatCurrency(this.shipping)}`;
 
     const order = document.querySelector(`.${this.outputSelector.className} #order`);
-    order.innerText = `Order Total:  $${this.orderTotal.toFixed(2)}`;
+    order.innerText = `Order Total:  $${formatCurrency(this.orderTotal)}`;
 
   }
 
-  async checkout(form) {
-    const orderForm = document.getElementsByName("order-form");
+  async checkout() {
+    const orderForm = document.forms["orderForm"];
     const orders = formDataToJSON(orderForm);
     const orderDate = new Date().toDateString();
     orders.orderDate = orderDate;
@@ -84,13 +84,16 @@ export default class CheckoutProcess {
 
     try {
       const response = await services.checkout(orders);
+      location.assign("../checkout/success.html");
+      setLocalStorage(this.key, []);
       console.log(response);
     } catch (err) {
       console.log(err);
     }
-  }
 
-  
-  
+
+    
+  }
+    
 }
 

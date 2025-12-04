@@ -18,14 +18,14 @@
     <main class="divider">
       <section class="checkout-container">
         <h2>Review & Place your Order</h2>
-        <form action="#" method="post" name="order-form">
+        <form name="orderForm">
             <fieldset>
                 <legend>Billing/Shipping Information</legend>
                 <label for="fname">First Name</label>
                 <input type="text" id="fname" name="fname" required>
 
                 <label for="lname">Last Name</label>
-                <input type="text" id="lastName" name="lname" required>
+                <input type="text" id="lname" name="lname" required>
 
                 <label for="street">Address</label>
                 <input type="text" id="street" name="street" required>
@@ -44,10 +44,10 @@
               <fieldset>
                 <legend>Payment Details</legend>                                
                 <label for="cardNumber">Credit Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{13,16}" title="Enter a valid credit card number" required>
-                <input type="text" id="expiration" name="expiration" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])/[0-9]{2}$" required>
+                <input type="text" id="cardNumber" name="cardNumber" title="Enter a valid credit card number" required>
+                <input type="text" id="expiration" name="expiration" placeholder="MM/YY" required>
                 <label for="code">Security Code</label>
-                <input type="text" id="code" name="code" pattern="[0-9]{3,4}" required>
+                <input type="text" id="code" name="code" required>
             </fieldset>    
             <fieldset class="order-summary">
               <legend>Order Summary</legend>   
