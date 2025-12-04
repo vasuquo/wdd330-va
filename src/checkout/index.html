@@ -19,45 +19,57 @@
       <section class="checkout-container">
         <h2>Review & Place your Order</h2>
         <form name="orderForm">
+          <fieldset>
+            <legend>Billing/Shipping Information</legend>
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" required />
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" required />
+
+            <label for="street">Address</label>
+            <input type="text" id="street" name="street" required />
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required />
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" required />
+
+            <label for="zip">Zip Code</label>
+            <input type="text" id="zip" name="zip" required />
+          </fieldset>
+
+          <div class="payment-container">
             <fieldset>
-                <legend>Billing/Shipping Information</legend>
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="fname" required>
-
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lname" required>
-
-                <label for="street">Address</label>
-                <input type="text" id="street" name="street" required>
-
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" required>
-
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" required>
-
-                <label for="zip">Zip Code</label>
-                <input type="text" id="zip" name="zip" required>
+              <legend>Payment Details</legend>
+              <label for="cardNumber">Credit Card Number</label>
+              <input
+                type="text"
+                id="cardNumber"
+                name="cardNumber"
+                title="Enter a valid credit card number"
+                required
+              />
+              <input
+                type="text"
+                id="expiration"
+                name="expiration"
+                placeholder="MM/YY"
+                required
+              />
+              <label for="code">Security Code</label>
+              <input type="text" id="code" name="code" required />
             </fieldset>
-
-            <div class="payment-container">
-              <fieldset>
-                <legend>Payment Details</legend>                                
-                <label for="cardNumber">Credit Card Number</label>
-                <input type="text" id="cardNumber" name="cardNumber" title="Enter a valid credit card number" required>
-                <input type="text" id="expiration" name="expiration" placeholder="MM/YY" required>
-                <label for="code">Security Code</label>
-                <input type="text" id="code" name="code" required>
-            </fieldset>    
             <fieldset class="order-summary">
-              <legend>Order Summary</legend>   
-              <p id="subtotal">Subtotal: </p>
-              <p id="tax">Tax: </p>
-              <p id="shipping">Shipping Estimate: </p>
-              <p id="order">Order Total: </p>
-            </fieldset>      
-            </div>            
-            <button id="submit-order" type="submit">Complete Order</button>
+              <legend>Order Summary</legend>
+              <p id="subtotal">Subtotal:</p>
+              <p id="tax">Tax:</p>
+              <p id="shipping">Shipping Estimate:</p>
+              <p id="order">Order Total:</p>
+            </fieldset>
+          </div>
+          <button id="submit-order" type="submit">Complete Order</button>
         </form>
       </section>
     </main>

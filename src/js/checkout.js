@@ -8,11 +8,10 @@ const checkoutProcess = new CheckoutProcess("so-cart", orderElement);
 loadHeaderFooter();
 checkoutProcess.init();
 zipcode.addEventListener("change", () => {
-    checkoutProcess.calculateOrderTotal();
+  checkoutProcess.calculateOrderTotal();
 });
 
 submitOrder.addEventListener("click", (e) => {
-    e.preventDefault();   
-    checkoutProcess.checkout();
+  e.preventDefault();
+  checkoutProcess.checkout();
 });
-
